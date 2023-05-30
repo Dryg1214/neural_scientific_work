@@ -17,6 +17,8 @@ def downloadsameimages(searches: list, path: Path, count: int):
             data_folders += [dest]
     return data_folders
 
+
+
 def deletefailedimg(folders:list):
     for i in folders:
         failed = verify_images(get_image_files(i))
