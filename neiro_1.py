@@ -25,7 +25,8 @@ def deletefailedimg(folders:list):
         failed.map(os.remove)
 
 if __name__ == '__main__':
-    searches = 'bird', 'forest'
+    """
+    searches = 'owl', 'eagle'
     path = Path('C:\\Users\\Dungeon Master\\neiro_nauch\\data_sets')
     if not path.exists():
         mkdir(path)
@@ -42,20 +43,23 @@ if __name__ == '__main__':
     dls.train.show_batch(max_n=6, nrows=2)
     plt.show()
     home = Path('C:\\Users\\Dungeon Master\\neiro_nauch\\')
-    bird = Path('bird.jpg')
-    testfolder = downloadsameimages(['bird'], home, 5)
+    classified_object = Path('owl.jpg')
+    testfolder = downloadsameimages(['owl'], home, 5)
     deletefailedimg(testfolder)
 
     learn = cnn_learner(dls, resnet18, metrics=error_rate)
     learn.fine_tune(3)
-    path = os.listdir(path='bird\\')
+    """
+
+    learn = load_learner('models\\owl_eagle.pkl', cpu=False)
+    path = os.listdir(path='owl\\')
     for i, name in enumerate(path):
         #pil_img = Image.open('bird\\bird.jpg') 
-        is_bird, _, probs = learn.predict(f'bird\\{name}')
+        is_classified_object, _, probs = learn.predict(f'owl\\{name}')
         
-        print(f'{name} is a: {is_bird}')
-        print(f'Probability is a bird: {probs[0]:.4f}')
-
+        print(f'{name} is a: {is_classified_object}')
+        print(f'Probability is a owl: {probs[1]:.4f}')
+    learn.export('models\\owl_eagle.pkl')
     
 
     
