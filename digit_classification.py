@@ -33,13 +33,13 @@ model = tf.keras.models.Sequential([
         input_shape=(28, 28, 1), 
         filters = 32,
         kernel_size = (5, 5),
-        padding='same', # дополнение краев нулями для свертки
+        padding='same',
         activation='relu'
     ),
     tf.keras.layers.MaxPool2D(pool_size=(2, 2)),
-    tf.keras.layers.Flatten(), #слой трансформции в новую размерность (массив превратит в одномерный)
-    tf.keras.layers.Dense(512, activation=tf.nn.relu), #
-    tf.keras.layers.Dense(10, activation=tf.nn.softmax) #Параметры колличество нейронов и функция активации
+    tf.keras.layers.Flatten(),
+    tf.keras.layers.Dense(512, activation=tf.nn.relu),
+    tf.keras.layers.Dense(10, activation=tf.nn.softmax)
 ])
 
 
